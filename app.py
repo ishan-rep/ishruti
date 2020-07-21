@@ -174,6 +174,28 @@ def logout():
         return redirect(url_for('login'))
     return render_template('logout.html')
 
+@app.route('/check-invitation', methods=['GET'])
+def check_invitation():
+    return render_template('check_invitation.html')
+
+@app.route('/result-invitation',methods = ['POST', 'GET'])
+def result():
+    invited_people = ["Jitendra", "Kamlesh", "Shubham", "Siya", "Urmila", "Nishtha", "Gopal", "Kamal", "Gulab", "Archana", "Mudit", "Pratibha"
+    , "Meethi", "Cheeni", "Ram", "Shakuntla", "Krishna", "Anita", "Hans", "Radha", "Ramesh", "Madhu", "Dinesh", "Indu", "Vijay", "Akanksha", "Apoorva",
+    "Deepak", "Surbhi", "Nikhil", "Aastha", "Chandra", "Naresh", "Vandana", "Sunny", "Saurabh", "Ram", "Krishna", "Avval", "Ishan", "Neelam",
+    "Avan", "Shruti", "Manoj", "Ranjana", "Harshit"]
+    for i in range(0, len(invited_people)-1):
+        invited_people[i] = invited_people[i].lower()
+    if request.method == 'POST':
+        result = request.form
+        # print (result)
+        value = result.get('Name')
+        if value.lower() in invited_people:
+            final = {"result": "Yay " + value + "! you are invited! You are there in The Final 50."}
+        else:
+            final = {"result": "Sorry " + value + ", you couldn't make it to The Final 50. Either way, we love you! Hopefully this corona gets over soon"}
+        return render_template("result_invitation.html",result = final)
+
 @app.route('/')
 def index():
     search_query = request.args.get('q')
