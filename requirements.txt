@@ -7,6 +7,6 @@ Markdown==3.2.1
 MarkupSafe==1.1.1
 micawber==0.5.1
 peewee==3.13.3
-Pygments==2.6.1
+Pygments==2.7.4
 soupsieve==2.0
 Werkzeug==1.0.1
